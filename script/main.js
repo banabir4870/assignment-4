@@ -147,6 +147,10 @@ mainSection.addEventListener('click', function (event) {
 // Render Functions
 function renderInterview() {
     filterSection.innerHTML = ''
+    if (interviewList.length === 0) {
+        showEmptyMessage();
+        return;
+    }
 
     for (let interview of interviewList) {
         console.log(interview);
@@ -177,6 +181,10 @@ function renderInterview() {
 
 function renderRejected() {
     filterSection.innerHTML = ''
+    if (rejectedList.length === 0) {
+        showEmptyMessage();
+        return;
+    }
     for (let rejected of rejectedList) {
 
         let div = document.createElement('div');
@@ -216,4 +224,18 @@ function updateAvailableJobsCount() {
     } else if (currentStatus === 'btn-rejected-filter') {
         availableJobsCount.innerText = `${rejectedList.length} of ${totalJobs}`;
     }
+}
+
+// Empty Message
+function showEmptyMessage() {
+    const div = document.createElement('div');
+    div.className = 'py-14 px-12 border-2 border-gray-200 rounded-lg text-center space-y-3 mt-4';
+    div.innerHTML = `
+        <div class="flex justify-center">
+            <img src="jobs.png" alt="" class="mx-auto">
+        </div>
+        <h1 class="text-xl font-bold text-blue-950">No Jobs Available</h1>
+        <p>Check Back Soon For New Job Opportunities</p>
+    `;
+    filterSection.appendChild(div);
 }
