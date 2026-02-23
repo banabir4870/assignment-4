@@ -134,16 +134,20 @@ mainSection.addEventListener('click', function (event) {
     if (event.target.closest('.delete-btn')) {
         const parentCard = event.target.closest('.cards');
         const jobTitle = parentCard.querySelector('.job-title').innerText;
+
         if (currentStatus === 'btn-all-filter' || currentStatus === 'all') {
             parentCard.remove();
         }
+
         interviewList = interviewList.filter(item => item.jobTitle !== jobTitle);
         rejectedList = rejectedList.filter(item => item.jobTitle !== jobTitle);
+
         if (currentStatus === 'btn-interview-filter') {
             renderInterview();
         } else if (currentStatus === 'btn-rejected-filter') {
             renderRejected();
         }
+        
         calculateCount();
         updateAvailableJobsCount();
     }

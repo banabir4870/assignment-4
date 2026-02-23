@@ -1,0 +1,32 @@
+Here are the answers of the question given in readme:
+
+Question-1: What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
+
+Answer-1:  The difference between getElementById, getElementsByClassName and querySelector/querySelectorAll are:
+            getElementById: Its gets the element by an individual id.  It returns a single DOM element when found id. Or returns Null.
+
+            getElementsByClassName: We can use class name for two or more element. It helps us to get all the elements by a class name. It returns as a HTML collection
+
+            querySelector / querySelectorAll: When we use class or id, we give them a value. querySelector and querySelectorAll helps us to get the elements with that value.
+                                              querySelector returns the first element from all it got. and querySelectorAll returns all the elements it got. As a nodelist.
+
+Question-2: How do you create and insert a new element into the DOM?
+
+Answer-2:   I can create a element by using createElement. And insert into DOM by using appendChild().
+
+Question-3: What is Event Bubbling? And how does it work?
+
+Answer-3:   Event bubbling is the way how an event travel through a DOM after trigger something. Like if i triggered a click, how it travels from the clicked element to the parent, grandparent element is
+            called bubbling.
+
+Question-4: What is Event Delegation in JavaScript? Why is it useful?
+
+Answer-4:   Event Delegation is the way where you can catch the parent element by using event listener instead of catching individual childs. Its useful because it required less code.
+            And very easy to manage.
+
+Question-5: What is the difference between preventDefault() and stopPropagation() methods?
+
+Answer-5:    The difference between preventDefault() and stopPropagation() methods are:
+             You can stop default browser behavior in preventDefault() but not in stopPropagation(). You can't stop event bubbling in preventDefault() but can in stopPropagation().
+             stopPropagation() prevent parent handlers from reacting to child click.
+
