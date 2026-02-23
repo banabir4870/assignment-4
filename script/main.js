@@ -4,7 +4,7 @@ let currentStatus = 'all';
 
 let totalCount = document.getElementById('total-count');
 let interviewCount = document.getElementById('interview-count');
-let rejectedCunt = document.getElementById('rejected-count');
+let rejectedCount = document.getElementById('rejected-count');
 
 const allFilterBtn = document.getElementById('btn-all-filter');
 const interviewFilterBtn = document.getElementById('btn-interview-filter');
@@ -17,7 +17,7 @@ const filterSection = document.getElementById('filtered-section');
 function calculateCount() {
     totalCount.innerText = allJobsSection.children.length;
     interviewCount.innerText = interviewList.length;
-    rejectedCunt.innerText = rejectedList.length;
+    rejectedCount.innerText = rejectedList.length;
 }
 
 calculateCount();
@@ -104,7 +104,6 @@ mainSection.addEventListener('click', function (event) {
         const jobTitle = parenNode.querySelector('.job-title').innerText
         const position = parenNode.querySelector('.position').innerText
         const facilities = parenNode.querySelector('.facilities').innerText
-        const status = parenNode.querySelector('.status').innerText
         const description = parenNode.querySelector('.description').innerText
 
         parenNode.querySelector('.status').innerText = 'Rejected'
@@ -153,8 +152,6 @@ function renderInterview() {
     }
 
     for (let interview of interviewList) {
-        console.log(interview);
-
         let div = document.createElement('div');
         div.className = 'border-2 border-gray-200 my-4 p-6 rounded-lg space-y-5'
         div.innerHTML = `
