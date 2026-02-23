@@ -21,6 +21,7 @@ function calculateCount() {
 }
 
 calculateCount();
+updateAvailableJobsCount();
 
 
 function toggleStyle(id) {
@@ -42,7 +43,7 @@ function toggleStyle(id) {
     selected.classList.add('bg-blue-500', 'text-white');
 
 
-    // filtering while clicking the filter button (All, Thriving, Struggling)
+    // filtering buttons
     if (id === 'btn-interview-filter') {
         allJobsSection.classList.add('hidden');
         filterSection.classList.remove('hidden');
@@ -52,11 +53,12 @@ function toggleStyle(id) {
         allJobsSection.classList.remove('hidden');
         filterSection.classList.add('hidden');
     }
-    else if (id == 'btn-rejected-filter') {
-        allCardSection.classList.add('hidden');
+    else if (id === 'btn-rejected-filter') {
+        allJobsSection.classList.add('hidden');
         filterSection.classList.remove('hidden')
         renderRejected();
     }
+    updateAvailableJobsCount();
 
 }
 
@@ -69,73 +71,149 @@ mainSection.addEventListener('click', function (event) {
         const jobTitle = parenNode.querySelector('.job-title').innerText
         const position = parenNode.querySelector('.position').innerText
         const facilities = parenNode.querySelector('.facilities').innerText
-        // const status = parenNode.querySelector('.status').innerText Eikhan obdi updated
-        const notes = parenNode.querySelector('.notes').innerText
+        const status = parenNode.querySelector('.status').innerText
+        const description = parenNode.querySelector('.description').innerText
 
-        parenNode.querySelector('.status').innerText = 'Thrive'
+        parenNode.querySelector('.status').innerText = 'Interview'
 
         const cardInfo = {
-            plantName,
-            light,
-            water,
-            status: 'Thrive',
-            notes
+            jobTitle,
+            position,
+            facilities,
+            status: 'Interview',
+            description
         }
 
-        const plantExist = thrivingList.find(item => item.plantName == cardInfo.plantName)
+        const jobExist = interviewList.find(item => item.jobTitle == cardInfo.jobTitle)
 
-        if (!plantExist) {
-            thrivingList.push(cardInfo)
+        if (!jobExist) {
+            interviewList.push(cardInfo)
         }
+        rejectedList = rejectedList.filter(item => item.jobTitle != cardInfo.jobTitle)
 
-        // step 2 finish
-        // removing the plant from struggling list
-        strugglingList = strugglingList.filter(item => item.plantName != cardInfo.plantName)
-
-        // after remove rerender the html
-        if (currentStatus == 'struggling-filter-btn') {
-            renderStruggling()
+        if (currentStatus == 'btn-rejected-filter') {
+            renderRejected()
         }
 
         calculateCount()
 
 
-    } else if (event.target.classList.contains('struggling-btn')) {
+    } else if (event.target.classList.contains('btn-rejected')) {
         const parenNode = event.target.parentNode.parentNode;
 
-        const plantName = parenNode.querySelector('.plantName').innerText
-        const light = parenNode.querySelector('.light').innerText
-        const water = parenNode.querySelector('.water').innerText
+        const jobTitle = parenNode.querySelector('.job-title').innerText
+        const position = parenNode.querySelector('.position').innerText
+        const facilities = parenNode.querySelector('.facilities').innerText
         const status = parenNode.querySelector('.status').innerText
-        const notes = parenNode.querySelector('.notes').innerText
+        const description = parenNode.querySelector('.description').innerText
 
-        parenNode.querySelector('.status').innerText = 'Struggle'
+        parenNode.querySelector('.status').innerText = 'Rejected'
 
         const cardInfo = {
-            plantName,
-            light,
-            water,
-            status: 'Struggle',
-            notes
+            jobTitle,
+            position,
+            facilities,
+            status: 'Rejected',
+            description
         }
 
-        const plantExist = strugglingList.find(item => item.plantName == cardInfo.plantName)
+        const jobExist = rejectedList.find(item => item.jobTitle == cardInfo.jobTitle)
 
-        if (!plantExist) {
-            strugglingList.push(cardInfo)
+        if (!jobExist) {
+            rejectedList.push(cardInfo)
         }
 
-        // removing the plant from thriving list
-        thrivingList = thrivingList.filter(item => item.plantName != cardInfo.plantName)
-
-        // console.log(thrivingList);
-
-        // after remove rerender the html
-        if (currentStatus == "thriving-filter-btn") {
-            renderThriving();
+        interviewList = interviewList.filter(item => item.jobTitle != cardInfo.jobTitle)
+        if (currentStatus == "btn-interview-filter") {
+            renderInterview();
         }
         calculateCount()
 
     }
 
+    // delete job button
+    if (event.target.closest('.delete-btn')) {
+        const parentCard = event.target.closest('.cards');
+        if (currentStatus === 'btn-all-filter' || currentStatus === 'all') {
+            parentCard.remove();
+        }
+        calculateCount();
+        updateAvailableJobsCount();
+    }
+
 })
+
+
+// Render Functions
+function renderInterview() {
+    filterSection.innerHTML = ''
+
+    for (let interview of interviewList) {
+        console.log(interview);
+
+        let div = document.createElement('div');
+        div.className = 'border-2 border-gray-200 my-4 p-6 rounded-lg space-y-5'
+        div.innerHTML = `
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="job-title text-xl font-bold text-blue-950">${interview.jobTitle}</h1>
+                <p class="position text-sm text-neutral/70">${interview.position}</p>
+            </div>
+            <div>
+                <button class="delete-btn border-2 rounded-full p-1 border-gray-200"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+        </div>
+        <p class="facilities text-[12px] text-neutral/70">${interview.facilities}</p>
+        <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-success">${interview.status}</p>
+        <p class="description text-[12px] text-neutral">${interview.description}</p>
+        <div class="flex gap-2">
+            <button class="btn-interview btn btn-outline btn-success">Interview</button>
+            <button class="btn-rejected btn btn-outline btn-error">Rejected</button>
+        </div>
+        `
+        filterSection.appendChild(div)
+    }
+}
+
+function renderRejected() {
+    filterSection.innerHTML = ''
+    for (let rejected of rejectedList) {
+
+        let div = document.createElement('div');
+        div.className = 'border-2 border-gray-200 my-4 p-6 rounded-lg space-y-5'
+        div.innerHTML = `
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="job-title text-xl font-bold text-blue-950">${rejected.jobTitle}</h1>
+                <p class="position text-sm text-neutral/70">${rejected.position}</p>
+            </div>
+            <div>
+                <button class="delete-btn border-2 rounded-full p-1 border-gray-200"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+        </div>
+        <p class="facilities text-[12px] text-neutral/70">${rejected.facilities}</p>
+        <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-error">${rejected.status}</p>
+        <p class="description text-[12px] text-neutral">${rejected.description}</p>
+        <div class="flex gap-2">
+            <button class="btn-interview btn btn-outline btn-success">Interview</button>
+            <button class="btn-rejected btn btn-outline btn-error">Rejected</button>
+        </div>
+        `;
+        filterSection.appendChild(div)
+    }
+}
+
+
+// updating count function
+function updateAvailableJobsCount() {
+    const availableJobsCount = document.getElementById('available-jobs-count');
+    const totalJobs = allJobsSection.children.length;
+
+    if (currentStatus === 'btn-all-filter' || currentStatus === 'all') {
+        availableJobsCount.innerText = `${totalJobs}`;
+    } else if (currentStatus === 'btn-interview-filter') {
+        availableJobsCount.innerText = `${interviewList.length} of ${totalJobs}`;
+    } else if (currentStatus === 'btn-rejected-filter') {
+        availableJobsCount.innerText = `${rejectedList.length} of ${totalJobs}`;
+    }
+}

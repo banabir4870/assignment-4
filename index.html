@@ -55,11 +55,11 @@
             </div>
             <!-- buttons -->
             <div class="mt-6 flex gap-2">
-                <button id="btn-all-filter"
+                <button onclick="toggleStyle('btn-all-filter')" id="btn-all-filter"
                     class="btn py-2 px-6 text-sm font-medium bg-blue-500 text-white">All</button>
-                <button id="btn-interview-filter"
+                <button onclick="toggleStyle('btn-interview-filter')" id="btn-interview-filter"
                     class="btn py-2 px-6 text-sm font-medium text-neutral/70">Interview</button>
-                <button id="btn-rejected-filter"
+                <button onclick="toggleStyle('btn-rejected-filter')" id="btn-rejected-filter"
                     class="btn py-2 px-6 text-sm font-medium text-neutral/70">Rejected</button>
             </div>
             <section id="filtered-section" class="hidden">
@@ -82,8 +82,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Remote • Full-time • $130,000 - $175,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Build cross-platform mobile applications using React Native. Work on
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Build cross-platform mobile applications using React Native. Work on
                     products used by millions of users worldwide.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -103,8 +103,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Create stunning web experiences for high-profile clients. Must have
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Create stunning web experiences for high-profile clients. Must have
                     portfolio and experience with modern web design trends.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -124,8 +124,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Boston, MA • Full-time • $125,000 - $165,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Transform complex data into compelling visualizations. Required
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Transform complex data into compelling visualizations. Required
                     skills: D3.js, React, and strong analytical thinking.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -145,8 +145,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Seattle, WA • Full-time • $140,000 - $190,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Design and maintain scalable backend systems using Python and AWS.
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Design and maintain scalable backend systems using Python and AWS.
                     Work with modern DevOps practices and cloud infrastructure.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -166,8 +166,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Austin, TX • Full-time • $110,000 - $150,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Create beautiful and functional user interfaces for our suite of
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Create beautiful and functional user interfaces for our suite of
                     products. Strong design skills and frontend development expertise required.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -187,8 +187,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">New York, NY • Full-time • $130,000 - $170,00</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Build enterprise applications with JavaScript and modern frameworks.
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Build enterprise applications with JavaScript and modern frameworks.
                     We offer competitive compensation, health insurance, and professional development opportunities.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -208,8 +208,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">Remote • Full-time • $120,000 - $160,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">Join our fast-growing startup and work on our core platform.
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">Join our fast-growing startup and work on our core platform.
                     Experience with Node.js and React required. Great benefits and equity package included.</p>
                 <div class="flex gap-2">
                     <button class="btn-interview btn btn-outline btn-success">Interview</button>
@@ -229,8 +229,8 @@
                     </div>
                 </div>
                 <p class="facilities text-[12px] text-neutral/70">San Francisco, CA • Full-time • $130,000 - $175,000</p>
-                <p class="status px-3 py-2 bg-[#EEF4FF] w-28">Not Applied</p>
-                <p class="text-[12px] text-neutral">We are looking for an experienced Frontend Developer to build
+                <p class="status px-3 py-2 bg-[#EEF4FF] w-28 h-10 text-neutral">Not Applied</p>
+                <p class="description text-[12px] text-neutral">We are looking for an experienced Frontend Developer to build
                     scalable web applications using React and TypeScript. You will work with a talented team on
                     cutting-edge projects.</p>
                 <div class="flex gap-2">
